@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ANIMALES</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/site.css}" rel="stylesheet"/>
+</head>
+<body>
+<h1>Animales</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Color</th>
+        <th>Father</th>
+        <th>Mother</th>
+        <th>Status</th>
+    </tr>
+    <tr th:each="animal : ${animalsList}">
+        <td th:text="${animal.id}">Id</td>
+        <td th:text="${animal.name}">Name</td>
+        <td th:text="${animal.sex}">Sex</td>
+        <td th:text="${animal.color}">Color</td>
+        <td th:text="${animal.father}">Father</td>
+        <td th:text="${animal.mother}">Mother</td>
+        <td th:text="${animal.status}">Status</td>
+        <td th:date="${animal.born_date}">Status</td>
+    </tr>
+</table>
+
+</body>
+</html>
