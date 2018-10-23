@@ -6,6 +6,7 @@ import com.ddfdesign.msanimals.rest.dto.AnimalDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -71,6 +72,7 @@ public class GestionAnimals implements IGestionAnimals{
                         );
         return animalDTO;
     }
+
     @Override
     public AnimalDTO createAnimalById(AnimalDTO animalDTO){
         Animal animal = new Animal(
@@ -134,5 +136,108 @@ public class GestionAnimals implements IGestionAnimals{
         );
         animalsRepository.save(animal);
         return true;
+    }
+
+    @Override
+    public List<AnimalDTO> getAnimalByName(String name){
+        List<AnimalDTO> animalsName = new ArrayList<>();
+        List<Animal> animalList = animalsRepository.findByName(name);
+        animalList.forEach(animal -> {AnimalDTO animalDTO = new AnimalDTO(
+                animal.getId(),
+                animal.getName(),
+                animal.getBorn_date(),
+                animal.getSex(),
+                animal.getWeight(),
+                animal.getStatus(),
+                animal.getColor(),
+                animal.getFather(),
+                animal.getMother(),
+                animal.getDeath_date(),
+                animal.getClient(),
+                animal.getSale(),
+                animal.getBreed());
+            animalsName.add(animalDTO);
+            return;});
+
+        return animalsName;
+    }
+
+    @Override
+    public List<AnimalDTO> getAnimalByBreed(Long breed){
+        List<AnimalDTO> animalsBreed = new ArrayList<>();
+        List<Animal> animalList = animalsRepository.findByBreed(breed);
+        animalList.forEach(animal -> {AnimalDTO animalDTO = new AnimalDTO(
+                animal.getId(),
+                animal.getName(),
+                animal.getBorn_date(),
+                animal.getSex(),
+                animal.getWeight(),
+                animal.getStatus(),
+                animal.getColor(),
+                animal.getFather(),
+                animal.getMother(),
+                animal.getDeath_date(),
+                animal.getClient(),
+                animal.getSale(),
+                animal.getBreed());
+            animalsBreed.add(animalDTO);
+            return;});
+
+        return animalsBreed;
+    }
+
+    @Override
+    public List<AnimalDTO> getAnimalByStatus(String status){
+        List<AnimalDTO> animalsStatus = new ArrayList<>();
+        List<Animal> animalList = animalsRepository.findByStatus(status);
+        animalList.forEach(animal -> {AnimalDTO animalDTO = new AnimalDTO(
+                animal.getId(),
+                animal.getName(),
+                animal.getBorn_date(),
+                animal.getSex(),
+                animal.getWeight(),
+                animal.getStatus(),
+                animal.getColor(),
+                animal.getFather(),
+                animal.getMother(),
+                animal.getDeath_date(),
+                animal.getClient(),
+                animal.getSale(),
+                animal.getBreed());
+            animalsStatus.add(animalDTO);
+            return;});
+
+        return animalsStatus;
+    }
+
+    /**
+     * Devuelve una lista de Animals cuyos padre y madre son los que se pasan como
+     * parámetros
+     * @param father
+     * @param mother
+     * @return
+     */
+    @Override
+    public List<AnimalDTO> getAnimalByFatherMother(Long father, Long mother){
+        List<AnimalDTO> animalsfathermother = new ArrayList<>();
+        List<Animal> animalList = animalsRepository.findFatherMother(father, mother);
+        animalList.forEach(animal -> {AnimalDTO animalDTO = new AnimalDTO(
+                animal.getId(),
+                animal.getName(),
+                animal.getBorn_date(),
+                animal.getSex(),
+                animal.getWeight(),
+                animal.getStatus(),
+                animal.getColor(),
+                animal.getFather(),
+                animal.getMother(),
+                animal.getDeath_date(),
+                animal.getClient(),
+                animal.getSale(),
+                animal.getBreed());
+            animalsfathermother.add(animalDTO);
+            return;});
+
+        return animalsfathermother;
     }
 }

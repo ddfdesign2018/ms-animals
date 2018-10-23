@@ -4,10 +4,7 @@ import com.ddfdesign.msanimals.rest.dto.AnimalDTO;
 import com.ddfdesign.msanimals.service.IGestionAnimals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.ws.rs.PathParam;
@@ -70,6 +67,16 @@ public class AnimalResourceMVC {
         List<AnimalDTO> listaAnimals = gestionAnimals.getAllAnimals();
         ModelAndView mav = new ModelAndView();
         mav.addObject("animalsList", listaAnimals);
+        mav.setViewName("animals");
+        return mav;
+    }
+
+    @GetMapping("breed")
+    public ModelAndView getAnimalByBreed(@PathParam ("breed") String breed) {
+        Long breed2 = Long.valueOf(breed);
+        List<AnimalDTO> listaAnimal = gestionAnimals.getAnimalByBreed(breed2);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("animalsList", listaAnimal);
         mav.setViewName("animals");
         return mav;
     }

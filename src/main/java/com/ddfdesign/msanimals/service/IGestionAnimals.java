@@ -11,4 +11,8 @@ public interface IGestionAnimals {
     AnimalDTO createAnimalById(AnimalDTO animalDTO);
     boolean deleteAnimalById(Long idAnimal);
     boolean updateAnimalById(AnimalDTO animalDTO);
+    List<AnimalDTO> getAnimalByName(String name);
+    List<AnimalDTO> getAnimalByBreed (Long breed);
+    List<AnimalDTO> getAnimalByStatus (String status);
+    List<AnimalDTO> getAnimalByFatherMother (Long father, Long mother);
 }

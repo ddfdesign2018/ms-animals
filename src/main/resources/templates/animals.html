@@ -17,6 +17,8 @@
         <th>Father</th>
         <th>Mother</th>
         <th>Status</th>
+        <th>Born_date</th>
+        <th>Breed</th>
     </tr>
     <tr th:each="animal : ${animalsList}">
         <td th:text="${animal.id}">Id</td>
@@ -26,7 +28,8 @@
         <td th:text="${animal.father}">Father</td>
         <td th:text="${animal.mother}">Mother</td>
         <td th:text="${animal.status}">Status</td>
-        <td th:date="${animal.born_date}">Status</td>
+        <td th:text="${animal.born_date}">Status</td>
+        <td th:text="${animal.breed}">Breed</td>
     </tr>
 </table>
 
