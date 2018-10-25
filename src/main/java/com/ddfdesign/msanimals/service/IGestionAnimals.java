@@ -15,4 +15,5 @@ public interface IGestionAnimals {
     List<AnimalDTO> getAnimalByBreed (Long breed);
     List<AnimalDTO> getAnimalByStatus (String status);
     List<AnimalDTO> getAnimalByFatherMother (Long father, Long mother);
+    List<AnimalDTO> getAnimalByClient (Long client);
 }

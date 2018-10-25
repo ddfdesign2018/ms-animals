@@ -12,17 +12,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class GestionAnimals implements IGestionAnimals{
+public class GestionAnimals implements IGestionAnimals {
 
     @Autowired
     IAnimalsRepository animalsRepository;
 
     /**
-     *
      * @return Devuelve una lista con todos los Animals
      */
     @Override
-    public List<AnimalDTO> getAllAnimals(){
+    public List<AnimalDTO> getAllAnimals() {
         List<AnimalDTO> lista = animalsRepository.findAll()
                 .stream()
                 .map(
@@ -46,35 +45,34 @@ public class GestionAnimals implements IGestionAnimals{
     }
 
     /**
-     *
      * @param idAnimal
      * @return Devuelve los datos del animal por idAnimal
      */
 
     @Override
-    public AnimalDTO getAnimalById(Long idAnimal){
+    public AnimalDTO getAnimalById(Long idAnimal) {
         Optional<Animal> animalOptional = animalsRepository.findById(idAnimal);
         Animal animal = animalOptional.get();
         AnimalDTO animalDTO = new AnimalDTO(
-                                animal.getId(),
-                                animal.getName(),
-                                animal.getBorn_date(),
-                                animal.getSex(),
-                                animal.getWeight(),
-                                animal.getStatus(),
-                                animal.getColor(),
-                                animal.getFather(),
-                                animal.getMother(),
-                                animal.getDeath_date(),
-                                animal.getClient(),
-                                animal.getSale(),
-                                animal.getBreed()
-                        );
+                animal.getId(),
+                animal.getName(),
+                animal.getBorn_date(),
+                animal.getSex(),
+                animal.getWeight(),
+                animal.getStatus(),
+                animal.getColor(),
+                animal.getFather(),
+                animal.getMother(),
+                animal.getDeath_date(),
+                animal.getClient(),
+                animal.getSale(),
+                animal.getBreed()
+        );
         return animalDTO;
     }
 
     @Override
-    public AnimalDTO createAnimalById(AnimalDTO animalDTO){
+    public AnimalDTO createAnimalById(AnimalDTO animalDTO) {
         Animal animal = new Animal(
                 null,
                 animalDTO.getName(),
@@ -91,7 +89,7 @@ public class GestionAnimals implements IGestionAnimals{
                 animalDTO.getBreed()
         );
         Animal resultado = animalsRepository.save(animal);
-        return new AnimalDTO(animal.getId(),
+        return new AnimalDTO(resultado.getId(),
                 resultado.getName(),
                 resultado.getBorn_date(),
                 resultado.getSex(),
@@ -107,7 +105,7 @@ public class GestionAnimals implements IGestionAnimals{
     }
 
     @Override
-    public boolean deleteAnimalById(Long idAnimal){
+    public boolean deleteAnimalById(Long idAnimal) {
 
         boolean resultado = false;
         animalsRepository.deleteById(idAnimal);
@@ -118,7 +116,7 @@ public class GestionAnimals implements IGestionAnimals{
     }
 
     @Override
-    public boolean updateAnimalById(AnimalDTO animalDTO){
+    public boolean updateAnimalById(AnimalDTO animalDTO) {
         Animal animal = new Animal(
                 animalDTO.getId(),
                 animalDTO.getName(),
@@ -139,73 +137,79 @@ public class GestionAnimals implements IGestionAnimals{
     }
 
     @Override
-    public List<AnimalDTO> getAnimalByName(String name){
+    public List<AnimalDTO> getAnimalByName(String name) {
         List<AnimalDTO> animalsName = new ArrayList<>();
         List<Animal> animalList = animalsRepository.findByName(name);
-        animalList.forEach(animal -> {AnimalDTO animalDTO = new AnimalDTO(
-                animal.getId(),
-                animal.getName(),
-                animal.getBorn_date(),
-                animal.getSex(),
-                animal.getWeight(),
-                animal.getStatus(),
-                animal.getColor(),
-                animal.getFather(),
-                animal.getMother(),
-                animal.getDeath_date(),
-                animal.getClient(),
-                animal.getSale(),
-                animal.getBreed());
+        animalList.forEach(animal -> {
+            AnimalDTO animalDTO = new AnimalDTO(
+                    animal.getId(),
+                    animal.getName(),
+                    animal.getBorn_date(),
+                    animal.getSex(),
+                    animal.getWeight(),
+                    animal.getStatus(),
+                    animal.getColor(),
+                    animal.getFather(),
+                    animal.getMother(),
+                    animal.getDeath_date(),
+                    animal.getClient(),
+                    animal.getSale(),
+                    animal.getBreed());
             animalsName.add(animalDTO);
-            return;});
+            return;
+        });
 
         return animalsName;
     }
 
     @Override
-    public List<AnimalDTO> getAnimalByBreed(Long breed){
+    public List<AnimalDTO> getAnimalByBreed(Long breed) {
         List<AnimalDTO> animalsBreed = new ArrayList<>();
         List<Animal> animalList = animalsRepository.findByBreed(breed);
-        animalList.forEach(animal -> {AnimalDTO animalDTO = new AnimalDTO(
-                animal.getId(),
-                animal.getName(),
-                animal.getBorn_date(),
-                animal.getSex(),
-                animal.getWeight(),
-                animal.getStatus(),
-                animal.getColor(),
-                animal.getFather(),
-                animal.getMother(),
-                animal.getDeath_date(),
-                animal.getClient(),
-                animal.getSale(),
-                animal.getBreed());
+        animalList.forEach(animal -> {
+            AnimalDTO animalDTO = new AnimalDTO(
+                    animal.getId(),
+                    animal.getName(),
+                    animal.getBorn_date(),
+                    animal.getSex(),
+                    animal.getWeight(),
+                    animal.getStatus(),
+                    animal.getColor(),
+                    animal.getFather(),
+                    animal.getMother(),
+                    animal.getDeath_date(),
+                    animal.getClient(),
+                    animal.getSale(),
+                    animal.getBreed());
             animalsBreed.add(animalDTO);
-            return;});
+            return;
+        });
 
         return animalsBreed;
     }
 
     @Override
-    public List<AnimalDTO> getAnimalByStatus(String status){
+    public List<AnimalDTO> getAnimalByStatus(String status) {
         List<AnimalDTO> animalsStatus = new ArrayList<>();
         List<Animal> animalList = animalsRepository.findByStatus(status);
-        animalList.forEach(animal -> {AnimalDTO animalDTO = new AnimalDTO(
-                animal.getId(),
-                animal.getName(),
-                animal.getBorn_date(),
-                animal.getSex(),
-                animal.getWeight(),
-                animal.getStatus(),
-                animal.getColor(),
-                animal.getFather(),
-                animal.getMother(),
-                animal.getDeath_date(),
-                animal.getClient(),
-                animal.getSale(),
-                animal.getBreed());
+        animalList.forEach(animal -> {
+            AnimalDTO animalDTO = new AnimalDTO(
+                    animal.getId(),
+                    animal.getName(),
+                    animal.getBorn_date(),
+                    animal.getSex(),
+                    animal.getWeight(),
+                    animal.getStatus(),
+                    animal.getColor(),
+                    animal.getFather(),
+                    animal.getMother(),
+                    animal.getDeath_date(),
+                    animal.getClient(),
+                    animal.getSale(),
+                    animal.getBreed());
             animalsStatus.add(animalDTO);
-            return;});
+            return;
+        });
 
         return animalsStatus;
     }
@@ -213,31 +217,59 @@ public class GestionAnimals implements IGestionAnimals{
     /**
      * Devuelve una lista de Animals cuyos padre y madre son los que se pasan como
      * parámetros
+     *
      * @param father
      * @param mother
      * @return
      */
     @Override
-    public List<AnimalDTO> getAnimalByFatherMother(Long father, Long mother){
+    public List<AnimalDTO> getAnimalByFatherMother(Long father, Long mother) {
         List<AnimalDTO> animalsfathermother = new ArrayList<>();
         List<Animal> animalList = animalsRepository.findFatherMother(father, mother);
-        animalList.forEach(animal -> {AnimalDTO animalDTO = new AnimalDTO(
-                animal.getId(),
-                animal.getName(),
-                animal.getBorn_date(),
-                animal.getSex(),
-                animal.getWeight(),
-                animal.getStatus(),
-                animal.getColor(),
-                animal.getFather(),
-                animal.getMother(),
-                animal.getDeath_date(),
-                animal.getClient(),
-                animal.getSale(),
-                animal.getBreed());
+        animalList.forEach(animal -> {
+            AnimalDTO animalDTO = new AnimalDTO(
+                    animal.getId(),
+                    animal.getName(),
+                    animal.getBorn_date(),
+                    animal.getSex(),
+                    animal.getWeight(),
+                    animal.getStatus(),
+                    animal.getColor(),
+                    animal.getFather(),
+                    animal.getMother(),
+                    animal.getDeath_date(),
+                    animal.getClient(),
+                    animal.getSale(),
+                    animal.getBreed());
             animalsfathermother.add(animalDTO);
-            return;});
+            return;
+        });
 
         return animalsfathermother;
+    }
+
+    @Override
+    public List<AnimalDTO> getAnimalByClient(Long client) {
+        List<AnimalDTO> animalsClient = new ArrayList<>();
+        List<Animal> animalList = animalsRepository.findByClient(client);
+        animalList.forEach(animal -> {
+            AnimalDTO animalDTO = new AnimalDTO(
+                    animal.getId(),
+                    animal.getName(),
+                    animal.getBorn_date(),
+                    animal.getSex(),
+                    animal.getWeight(),
+                    animal.getStatus(),
+                    animal.getColor(),
+                    animal.getFather(),
+                    animal.getMother(),
+                    animal.getDeath_date(),
+                    animal.getClient(),
+                    animal.getSale(),
+                    animal.getBreed());
+            animalsClient.add(animalDTO);
+            return;
+        });
+        return animalsClient;
     }
 }

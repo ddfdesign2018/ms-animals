@@ -1,5 +1,11 @@
 package com.ddfdesign.msanimals.rest;
 
+import com.ddfdesign.msanimals.feign.IBreed;
+import com.ddfdesign.msanimals.feign.IClient;
+import com.ddfdesign.msanimals.feign.ISpecy;
+import com.ddfdesign.msanimals.feign.dto.BreedDTO;
+import com.ddfdesign.msanimals.feign.dto.ClientDTO;
+import com.ddfdesign.msanimals.feign.dto.SpecyDTO;
 import com.ddfdesign.msanimals.rest.dto.AnimalDTO;
 import com.ddfdesign.msanimals.service.IGestionAnimals;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +23,15 @@ public class AnimalResourceMVC {
 
     @Autowired
     IGestionAnimals gestionAnimals;
+
+    @Autowired
+    ISpecy iSpecy;
+
+    @Autowired
+    IBreed iBreed;
+
+    @Autowired
+    IClient iClient;
 
     @GetMapping("animal")
     public ModelAndView getAllAnimalsMVC() {
@@ -78,6 +93,21 @@ public class AnimalResourceMVC {
         ModelAndView mav = new ModelAndView();
         mav.addObject("animalsList", listaAnimal);
         mav.setViewName("animals");
+        return mav;
+    }
+
+    @GetMapping("all")
+    public ModelAndView getAllMVC() {
+        List<AnimalDTO> listaAnimals = gestionAnimals.getAllAnimals();
+        List<SpecyDTO> listaSpecies = iSpecy.getAllSpeciesList();
+        List<BreedDTO> listaBreeds = iBreed.getAllBreedsList();
+        List<ClientDTO> listaClients = iClient.getAllClientsList();
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("animalsList", listaAnimals);
+        mav.addObject("speciesList", listaSpecies);
+        mav.addObject("breedsList",listaBreeds);
+        mav.addObject("clientsList",listaClients);
+        mav.setViewName("all");
         return mav;
     }
 

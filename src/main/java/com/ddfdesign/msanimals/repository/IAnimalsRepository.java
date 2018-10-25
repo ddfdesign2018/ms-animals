@@ -14,6 +14,7 @@ public interface IAnimalsRepository extends JpaRepository<Animal, Long > {
     List<Animal> findByName(String name);
     List<Animal> findByBreed(Long breed);
     List<Animal> findByStatus(String Status);
+    List<Animal> findByClient(Long client);
     @Query("SELECT p FROM Animal p WHERE p.father = :father AND p.mother = :mother")
     List<Animal> findFatherMother(@Param("father") Long father, @Param("mother") Long mother);
 }

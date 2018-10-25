@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ANI-BRE-SPE</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/site.css}" rel="stylesheet"/>
+</head>
+<body>
+<h1>Animals-Breeds-Species</h1>
+
+<p>Lista de Animals</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Color</th>
+        <th>Father</th>
+        <th>Mother</th>
+        <th>Status</th>
+        <th>Born_date</th>
+        <th>Breed</th>
+    </tr>
+    <tr th:each="animal : ${animalsList}">
+        <td th:text="${animal.id}">Id</td>
+        <td th:text="${animal.name}">Name</td>
+        <td th:text="${animal.sex}">Sex</td>
+        <td th:text="${animal.color}">Color</td>
+        <td th:text="${animal.father}">Father</td>
+        <td th:text="${animal.mother}">Mother</td>
+        <td th:text="${animal.status}">Status</td>
+        <td th:text="${animal.born_date}">Status</td>
+        <td th:text="${animal.breed}">Breed</td>
+    </tr>
+</table><br>
+
+<p>Lista de Species</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+    </tr>
+    <tr th:each="specy : ${speciesList}">
+        <td th:text="${specy.id}">Id</td>
+        <td th:text="${specy.name}">Name</td>
+        <td th:text="${specy.type}">Type</td>
+    </tr>
+</table><br>
+<p>Lista de Breeds</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Junior Price</th>
+        <th>Adult Price</th>
+        <th>Specy</th>
+    </tr>
+    <tr th:each="breed : ${breedsList}">
+        <td th:text="${breed.id}">Id</td>
+        <td th:text="${breed.name}">Name</td>
+        <td th:text="${breed.junior_price}">Junior Price</td>
+        <td th:text="${breed.adult_price}">Junior Price</td>
+        <td th:text="${breed.specy}">Junior Price</td>
+    </tr>
+</table><br>
+<p>Lista de Clients</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surnames</th>
+        <th>DNI</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>eMail</th>
+        <th>Status</th>
+        <th>Last Buy</th>
+    </tr>
+    <tr th:each="client : ${clientsList}">
+        <td th:text="${client.id}">Id</td>
+        <td th:text="${client.name}">Name</td>
+        <td th:text="${client.surnames}">Surnames</td>
+        <td th:text="${client.dni}">DNI</td>
+        <td th:text="${client.phone}">Phone</td>
+        <td th:text="${client.address}">Address</td>
+        <td th:text="${client.email}">eMail</td>
+        <td th:text="${client.status}">Status</td>
+        <td th:text="${client.last_buy}">Last Buy</td>
+    </tr>
+</table>
+</body>
+</html>

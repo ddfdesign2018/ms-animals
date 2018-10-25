@@ -76,4 +76,10 @@ public class AnimalsResource {
         return ResponseEntity.ok(listaAnimal);
     }
 
+    @RequestMapping(value = "animal/client/{client}", method = RequestMethod.GET)
+    public ResponseEntity<List<AnimalDTO>> getAnimalByClient(@PathVariable Long client) {
+        List<AnimalDTO> listaAnimal = gestionAnimals.getAnimalByClient(client);
+        return ResponseEntity.ok(listaAnimal);
+    }
+
 }
