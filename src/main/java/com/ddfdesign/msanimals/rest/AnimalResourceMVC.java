@@ -2,9 +2,11 @@ package com.ddfdesign.msanimals.rest;
 
 import com.ddfdesign.msanimals.feign.IBreed;
 import com.ddfdesign.msanimals.feign.IClient;
+import com.ddfdesign.msanimals.feign.ISale;
 import com.ddfdesign.msanimals.feign.ISpecy;
 import com.ddfdesign.msanimals.feign.dto.BreedDTO;
 import com.ddfdesign.msanimals.feign.dto.ClientDTO;
+import com.ddfdesign.msanimals.feign.dto.SaleDTO;
 import com.ddfdesign.msanimals.feign.dto.SpecyDTO;
 import com.ddfdesign.msanimals.rest.dto.AnimalDTO;
 import com.ddfdesign.msanimals.service.IGestionAnimals;
@@ -32,6 +34,9 @@ public class AnimalResourceMVC {
 
     @Autowired
     IClient iClient;
+
+    @Autowired
+    ISale iSale;
 
     @GetMapping("animal")
     public ModelAndView getAllAnimalsMVC() {
@@ -102,11 +107,13 @@ public class AnimalResourceMVC {
         List<SpecyDTO> listaSpecies = iSpecy.getAllSpeciesList();
         List<BreedDTO> listaBreeds = iBreed.getAllBreedsList();
         List<ClientDTO> listaClients = iClient.getAllClientsList();
+        List<SaleDTO> listaSales = iSale.getAllSalesList();
         ModelAndView mav = new ModelAndView();
         mav.addObject("animalsList", listaAnimals);
         mav.addObject("speciesList", listaSpecies);
         mav.addObject("breedsList",listaBreeds);
         mav.addObject("clientsList",listaClients);
+        mav.addObject("salesList",listaSales);
         mav.setViewName("all");
         return mav;
     }

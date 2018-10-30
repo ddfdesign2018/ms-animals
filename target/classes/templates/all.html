@@ -6,7 +6,7 @@
     <link th:href="@{/css/site.css}" rel="stylesheet"/>
 </head>
 <body>
-<h1>Animals-Breeds-Species</h1>
+<h1>Animals-Breeds-Species-Clients-Sales</h1>
 
 <p>Lista de Animals</p>
 <table>
@@ -87,6 +87,21 @@
         <td th:text="${client.email}">eMail</td>
         <td th:text="${client.status}">Status</td>
         <td th:text="${client.last_buy}">Last Buy</td>
+    </tr>
+</table><br>
+<p>Lista de Sales</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Client ID</th>
+    </tr>
+    <tr th:each="sale : ${salesList}">
+        <td th:text="${sale.id}">Id</td>
+        <td th:text="${sale.amount}">Amount</td>
+        <td th:text="${sale.date}">Date</td>
+        <td th:text="${sale.client}">Client ID</td>
     </tr>
 </table>
 </body>
